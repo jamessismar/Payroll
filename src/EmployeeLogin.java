@@ -43,6 +43,11 @@ public class EmployeeLogin extends javax.swing.JFrame {
 
         backEmployee.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         backEmployee.setText("BACK");
+        backEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backEmployeeActionPerformed(evt);
+            }
+        });
         jPanel1.add(backEmployee);
         backEmployee.setBounds(420, 240, 90, 30);
 
@@ -87,6 +92,12 @@ public class EmployeeLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backEmployeeActionPerformed
+         pickFrame pf = new pickFrame();
+        pf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backEmployeeActionPerformed
 
     /**
      * @param args the command line arguments

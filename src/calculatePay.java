@@ -30,7 +30,7 @@ public class calculatePay extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         employeeTable = new javax.swing.JTable();
         daysWorked = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        payField = new javax.swing.JTextField();
         yourBlance = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -42,11 +42,11 @@ public class calculatePay extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         gp = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
+        np = new javax.swing.JTextField();
+        ft = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        calculate = new javax.swing.JButton();
+        sst = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -95,15 +95,15 @@ public class calculatePay extends javax.swing.JFrame {
         jPanel1.add(daysWorked);
         daysWorked.setBounds(170, 400, 250, 30);
 
-        jTextField2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        payField.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        payField.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        payField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                payFieldActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField2);
-        jTextField2.setBounds(280, 590, 120, 30);
+        jPanel1.add(payField);
+        payField.setBounds(280, 590, 120, 30);
 
         yourBlance.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         yourBlance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -183,25 +183,25 @@ public class calculatePay extends javax.swing.JFrame {
         jPanel1.add(gp);
         gp.setBounds(120, 460, 110, 30);
 
-        jTextField6.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+        np.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        np.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        np.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField6ActionPerformed(evt);
+                npActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField6);
-        jTextField6.setBounds(120, 510, 110, 30);
+        jPanel1.add(np);
+        np.setBounds(120, 510, 110, 30);
 
-        jTextField7.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jTextField7.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField7.addActionListener(new java.awt.event.ActionListener() {
+        ft.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        ft.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        ft.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField7ActionPerformed(evt);
+                ftActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField7);
-        jTextField7.setBounds(120, 560, 110, 30);
+        jPanel1.add(ft);
+        ft.setBounds(120, 560, 110, 30);
 
         jButton1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButton1.setText("BACK");
@@ -213,20 +213,20 @@ public class calculatePay extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(290, 630, 100, 23);
 
-        jButton2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jButton2.setText("CALCULATE");
-        jPanel1.add(jButton2);
-        jButton2.setBounds(280, 540, 100, 23);
+        calculate.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        calculate.setText("CALCULATE");
+        jPanel1.add(calculate);
+        calculate.setBounds(280, 540, 100, 23);
 
-        jTextField3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        sst.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        sst.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        sst.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                sstActionPerformed(evt);
             }
         });
-        jPanel1.add(jTextField3);
-        jTextField3.setBounds(280, 490, 110, 30);
+        jPanel1.add(sst);
+        sst.setBounds(280, 490, 110, 30);
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -253,9 +253,9 @@ public class calculatePay extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_daysWorkedActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void payFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_payFieldActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_payFieldActionPerformed
 
     private void yourBlanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yourBlanceActionPerformed
         // TODO add your handling code here:
@@ -269,21 +269,21 @@ public class calculatePay extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_gpActionPerformed
 
-    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+    private void npActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_npActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField6ActionPerformed
+    }//GEN-LAST:event_npActionPerformed
 
-    private void jTextField7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField7ActionPerformed
+    private void ftActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ftActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField7ActionPerformed
+    }//GEN-LAST:event_ftActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void sstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sstActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_sstActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,11 +321,12 @@ public class calculatePay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton calculate;
     private javax.swing.JTextField daysWorked;
     private javax.swing.JTable employeeTable;
+    private javax.swing.JTextField ft;
     private javax.swing.JTextField gp;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -338,10 +339,9 @@ public class calculatePay extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
+    private javax.swing.JTextField np;
+    private javax.swing.JTextField payField;
+    private javax.swing.JTextField sst;
     private javax.swing.JTextField yourBlance;
     private javax.swing.JTextField yourName;
     // End of variables declaration//GEN-END:variables

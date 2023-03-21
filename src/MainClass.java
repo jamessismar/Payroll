@@ -1,11 +1,29 @@
-
-public class MainClass extends javax.swing.JFrame {
+import java.sql.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import javax.swing.*;
+import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+        
+public class MainClass extends javax.swing.JFrame implements ActionListener {
 
    
     public MainClass() {
         initComponents();
     }
-
+    
+    public Connection getConnection(){
+        try{
+            Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll", "root","" );
+            Statement myStmt = myConn.createStatement();
+            JOptionPane.showMessageDialog(null,"Connected");
+            return myConn;
+        } catch(SQLException ex){
+                Logger.getLogger(MainClass.class.getName()).log(Level.SEVERE,null,ex);
+                return null;
+        }
+    }
   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -46,7 +64,8 @@ public class MainClass extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void contActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contActionPerformed
-      
+      new pickFrame().setVisible(true);
+      this.dispose();
     }//GEN-LAST:event_contActionPerformed
 
     public static void main(String args[]) {
@@ -85,4 +104,9 @@ public class MainClass extends javax.swing.JFrame {
     private javax.swing.JButton cont;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

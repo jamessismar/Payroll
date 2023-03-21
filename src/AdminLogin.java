@@ -26,6 +26,11 @@ public class AdminLogin extends javax.swing.JFrame {
 
         backAdmin.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         backAdmin.setText("BACK");
+        backAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backAdminActionPerformed(evt);
+            }
+        });
         jPanel1.add(backAdmin);
         backAdmin.setBounds(400, 210, 90, 30);
 
@@ -84,6 +89,12 @@ public class AdminLogin extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backAdminActionPerformed
+         pickFrame pf = new pickFrame();
+        pf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backAdminActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

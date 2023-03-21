@@ -1,5 +1,7 @@
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
-public class pickFrame extends javax.swing.JFrame {
+public class pickFrame extends javax.swing.JFrame implements ActionListener{
 
     public pickFrame() {
         initComponents();
@@ -25,21 +27,41 @@ public class pickFrame extends javax.swing.JFrame {
 
         employee.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         employee.setText("EMPLOYEE");
+        employee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                employeeActionPerformed(evt);
+            }
+        });
         jPanel1.add(employee);
         employee.setBounds(40, 200, 170, 40);
 
         admin.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         admin.setText("ADMIN");
+        admin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminActionPerformed(evt);
+            }
+        });
         jPanel1.add(admin);
         admin.setBounds(330, 200, 160, 40);
 
         AdminSignUp.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         AdminSignUp.setText("SIGN UP FOR ADMIN");
+        AdminSignUp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AdminSignUpActionPerformed(evt);
+            }
+        });
         jPanel1.add(AdminSignUp);
         AdminSignUp.setBounds(330, 280, 160, 40);
 
         jButton4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jButton4.setText("SIGN UP FOR EMPLOYEE");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4);
         jButton4.setBounds(40, 280, 170, 40);
 
@@ -75,6 +97,26 @@ public class pickFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void employeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_employeeActionPerformed
+        new EmployeeLogin(). setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_employeeActionPerformed
+
+    private void adminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminActionPerformed
+        new AdminLogin(). setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_adminActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        new EmployeeSignUp(). setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void AdminSignUpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AdminSignUpActionPerformed
+        new AdminSignUp(). setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_AdminSignUpActionPerformed
 
     /**
      * @param args the command line arguments
@@ -121,4 +163,9 @@ public class pickFrame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

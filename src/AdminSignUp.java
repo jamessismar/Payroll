@@ -1,6 +1,19 @@
 
-public class AdminSignUp extends javax.swing.JFrame {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
+
+
+
+
+
+
+
+public class AdminSignUp extends javax.swing.JFrame implements ActionListener {
+    MainClass main = new MainClass();
     
     public AdminSignUp() {
         initComponents();
@@ -36,7 +49,7 @@ public class AdminSignUp extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("LAST NAME:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(20, 320, 90, 19);
+        jLabel1.setBounds(20, 309, 90, 30);
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -51,57 +64,57 @@ public class AdminSignUp extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setText("USERNAME :");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(20, 200, 80, 19);
+        jLabel3.setBounds(20, 150, 80, 30);
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setText("PINCODE :");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 230, 70, 19);
+        jLabel4.setBounds(20, 189, 70, 30);
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel5.setText("COMFIRM PIN :");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 260, 110, 19);
+        jLabel5.setBounds(20, 230, 110, 30);
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel6.setText("GENDER :");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(20, 350, 90, 19);
+        jLabel6.setBounds(20, 350, 90, 30);
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setText("FIRST NAME :");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(20, 290, 90, 19);
+        jLabel7.setBounds(20, 270, 90, 30);
 
         textGender.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         textGender.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(textGender);
-        textGender.setBounds(130, 350, 170, 22);
+        textGender.setBounds(130, 350, 170, 30);
 
         newAdminUser.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newAdminUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newAdminUser);
-        newAdminUser.setBounds(130, 200, 170, 22);
+        newAdminUser.setBounds(130, 150, 170, 30);
 
         newAdminPinCode.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newAdminPinCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newAdminPinCode);
-        newAdminPinCode.setBounds(130, 230, 170, 22);
+        newAdminPinCode.setBounds(130, 190, 170, 30);
 
         ConfirmPinCode.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         ConfirmPinCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(ConfirmPinCode);
-        ConfirmPinCode.setBounds(130, 260, 170, 22);
+        ConfirmPinCode.setBounds(130, 230, 170, 30);
 
         textFname.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         textFname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(textFname);
-        textFname.setBounds(130, 290, 170, 22);
+        textFname.setBounds(130, 270, 170, 30);
 
         textLname.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         textLname.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(textLname);
-        textLname.setBounds(130, 320, 170, 22);
+        textLname.setBounds(130, 310, 170, 30);
 
         createAdminAccount.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         createAdminAccount.setText("CREATE ACCOUNT");
@@ -115,6 +128,11 @@ public class AdminSignUp extends javax.swing.JFrame {
 
         adminSignUpBack.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         adminSignUpBack.setText("BACK");
+        adminSignUpBack.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                adminSignUpBackMouseClicked(evt);
+            }
+        });
         adminSignUpBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 adminSignUpBackActionPerformed(evt);
@@ -139,12 +157,69 @@ public class AdminSignUp extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void createAdminAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAdminAccountActionPerformed
-        // TODO add your handling code here:
+    try{
+    
+    if ( newAdminUser.getText().equals("")
+            ||newAdminPinCode.getText(). equals("")
+            || ConfirmPinCode.getText().equals("")) {
+            JOptionPane.showMessageDialog(null,"PLEASE FILL UP THE FORM BEFORE PROCEEDING THANKYOU.");
+           
+    }
+    else if( newAdminPinCode.getText().equals(ConfirmPinCode.getText())){
+        
+        Connection conn = main.getConnection();
+        Statement stmt = conn.createStatement();
+        
+        String name  = newAdminUser.getText();
+        String pin  = newAdminPinCode.getText();
+        String cPin  = ConfirmPinCode.getText();
+        String Fname  = textFname.getText();
+        String Lname  = textLname.getText();
+        String Gender  = textGender.getText();
+        
+        String sql = 
+               ("INSERT INTO admin_Account (adminUser,pin,confirmPin, First_Name, Last_Name,gender) "
+                + "values('"+ name +"','"+ pin +"','"+ cPin+ "','"+ Fname +"','"+ Lname +"','"+ Gender +"')");
+        
+        JOptionPane.showMessageDialog(null,"CREATING NEW ACCOUNT PLEASE WAIT...");
+        stmt.executeUpdate(sql);
+        JOptionPane.showMessageDialog(null,"ACCOUNT CREATED SUCCESSFULLY.");
+        
+        new AdminLogin().setVisible(true);
+        this.dispose();
+        
+    }else{
+        
+        JOptionPane.showMessageDialog(null,"PLEASE FILL UP THE FORM BEFORE PROCEEDING THANKYOU.");
+        
+        newAdminUser.setText("");
+        newAdminPinCode.setText("");
+        ConfirmPinCode.setText("");
+    }}
+     catch(Exception ex){
+             JOptionPane.showMessageDialog(null,ex.getMessage());
+
+     }
+    
+    
+    
+    
+    
+     
+        
+        
+        
     }//GEN-LAST:event_createAdminAccountActionPerformed
 
     private void adminSignUpBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminSignUpBackActionPerformed
-        // TODO add your handling code here:
+        pickFrame pf = new pickFrame();
+        pf.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_adminSignUpBackActionPerformed
+
+    private void adminSignUpBackMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_adminSignUpBackMouseClicked
+     
+    }//GEN-LAST:event_adminSignUpBackMouseClicked
 
     /**
      * @param args the command line arguments
@@ -200,4 +275,9 @@ public class AdminSignUp extends javax.swing.JFrame {
     private javax.swing.JTextField textGender;
     private javax.swing.JTextField textLname;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

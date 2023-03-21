@@ -150,7 +150,7 @@ public class CheckDelete extends javax.swing.JFrame {
         jScrollPane1.setViewportView(employeeTable);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 440, 580, 160);
+        jScrollPane1.setBounds(0, 440, 590, 160);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

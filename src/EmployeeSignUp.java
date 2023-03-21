@@ -139,6 +139,11 @@ public class EmployeeSignUp extends javax.swing.JFrame {
 
         adminSignUpBack.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         adminSignUpBack.setText("BACK");
+        adminSignUpBack.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminSignUpBackActionPerformed(evt);
+            }
+        });
         jPanel1.add(adminSignUpBack);
         adminSignUpBack.setBounds(40, 420, 72, 23);
 
@@ -170,6 +175,12 @@ public class EmployeeSignUp extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void adminSignUpBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminSignUpBackActionPerformed
+         pickFrame pf = new pickFrame();
+        pf.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_adminSignUpBackActionPerformed
 
     /**
      * @param args the command line arguments
