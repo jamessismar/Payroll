@@ -1,5 +1,15 @@
-
-public class AdminLogin extends javax.swing.JFrame {
+import  java.awt.event.ActionListener;
+import  java.awt.event.ActionEvent;
+import  java.sql.Connection;
+import  java.sql.ResultSet;    
+import  java.sql.SQLException;     
+import  java.sql.Statement;    
+import  java.util.logging.Level;     
+import  java.util.logging.Logger;    
+import  javax.swing.JOptionPane;      
+        
+        
+public class AdminLogin extends javax.swing.JFrame implements ActionListener{
 
     
     public AdminLogin() {
@@ -14,7 +24,7 @@ public class AdminLogin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         backAdmin = new javax.swing.JButton();
         logAdmin = new javax.swing.JButton();
-        userAdmin = new javax.swing.JTextField();
+        adminuser = new javax.swing.JTextField();
         adminPinCode = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -36,13 +46,18 @@ public class AdminLogin extends javax.swing.JFrame {
 
         logAdmin.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         logAdmin.setText("LOG IN");
+        logAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logAdminActionPerformed(evt);
+            }
+        });
         jPanel1.add(logAdmin);
         logAdmin.setBounds(400, 260, 90, 30);
 
-        userAdmin.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        userAdmin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jPanel1.add(userAdmin);
-        userAdmin.setBounds(160, 210, 210, 30);
+        adminuser.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        adminuser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPanel1.add(adminuser);
+        adminuser.setBounds(160, 210, 210, 30);
 
         adminPinCode.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         adminPinCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -96,6 +111,49 @@ public class AdminLogin extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backAdminActionPerformed
 
+    private void logAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logAdminActionPerformed
+      MainClass main = new MainClass();
+        
+       String Uname = adminuser.getText(); 
+       String Pword = adminPinCode.getText();
+       
+       try
+       {
+       int log = 1;
+       Connection Conn = main.getConnection();
+       Statement stmt = Conn.createStatement();
+       String sql = "Select * from admin_account";
+       ResultSet rs = stmt.executeQuery(sql);
+       while (rs.next()){
+       if (rs.getString(1).equals(Uname) && rs.getString(2).equals(Pword)){
+       log = 0;
+       break;
+             }
+       }
+       if (log == 0)
+       {
+       dispose();
+       new aLoginSuccessfully().setVisible(true);
+       }
+       else{
+       JOptionPane.showMessageDialog(null,"Log in Failed","COnnection Failed",JOptionPane.ERROR_MESSAGE);
+       adminuser .setText("");
+       adminPinCode.setText("");
+       }
+       
+       
+       }catch (SQLException ex){
+        Logger.getLogger(EmployeeLogin.class.getName()).log(Level.SEVERE,null,ex);   
+               }
+       
+       
+       
+       
+     
+        
+       
+    }//GEN-LAST:event_logAdminActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -130,12 +188,17 @@ public class AdminLogin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField adminPinCode;
+    private javax.swing.JTextField adminuser;
     private javax.swing.JButton backAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logAdmin;
-    private javax.swing.JTextField userAdmin;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

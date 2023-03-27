@@ -1,9 +1,28 @@
 
-public class givePayment extends javax.swing.JFrame {
+import  java.awt.event.ActionListener;
+import  java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import  java.sql.Connection;
+import  java.sql.PreparedStatement;
+import  java.sql.ResultSet;
+import  java.sql.SQLException;     
+import  java.sql.Statement;
+import java .util.ArrayList;
+import  java.util.logging.Level;     
+import  java.util.logging.Logger;    
+import  javax.swing.JOptionPane; 
+import  javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.table.DefaultTableModel;
 
-    
+public class givePayment extends javax.swing.JFrame implements ActionListener,MouseListener,AncestorListener {
+
+    MainClass main = new MainClass();
     public givePayment() {
         initComponents();
+        
+        showEmployeeFromTable();
     }
 
     @SuppressWarnings("unchecked")
@@ -159,6 +178,51 @@ public class givePayment extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+  public ArrayList<EmployeeInfo> getEmployeeList(){
+      ArrayList<EmployeeInfo> employeeList = new ArrayList<EmployeeInfo>();
+      String sql ="Select * from employeedata";
+      Statement stmt;
+      ResultSet rs;
+      
+      try{
+          stmt = Conn.createStatement();
+          rs = Stmt.executeQuery(sql);
+          EmployeeInfo employeeinfo;
+          
+          while (rs.next()){
+              
+              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getSting("id")),rs.getSting("employeename"),rs.getSting("gender"),rs.getSting("address"),
+              Double.parseDouble(rs.getString("balance"))rs.getSting("employeeposition"));
+              employeeList.add(employeeinfo);
+          }
+          }
+          
+          
+          
+      }  
+      
+      
+      
+      
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     private void id01ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_id01ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_id01ActionPerformed
@@ -223,4 +287,49 @@ public class givePayment extends javax.swing.JFrame {
     private javax.swing.JTextField text_gp;
     private javax.swing.JTextField totalpay;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ancestorAdded(AncestorEvent event) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ancestorRemoved(AncestorEvent event) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void ancestorMoved(AncestorEvent event) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

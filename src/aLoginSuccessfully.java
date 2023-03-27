@@ -1,13 +1,94 @@
+import  java.awt.event.ActionListener;
+import  java.awt.event.ActionEvent;
+import  java.sql.ResultSet;    
+import  java.sql.*;     
+import  java.sql.Statement;    
+import  javax.swing.JButton;     
+import  javax.swing.JScrollPane;    
+import  javax.swing.JOptionPane;      
 
 
-
-public class aLoginSuccessfully extends javax.swing.JFrame {
+public class aLoginSuccessfully extends javax.swing.JFrame implements ActionListener {
 
     
     public aLoginSuccessfully() {
         initComponents();
     }
+    MainClass main = new MainClass();
+   
+    private Object [][] query(String name) throws SQLException{
+    String sql = "Select * FROM emplyeedata Where account_name LIKE '%"+ name + "&'";
+    Connection Conn = main.getConnection();
+    Statement stmt = Conn.createStatement();
+    
+    ResultSet rs = stmt.executeQuery(sql);
+    
+    int totalRows = 0;
+    
+    try {
+        
+    rs = stmt.executeQuery(sql);
+    int rowCount = 0; {
+     totalRows +=1;
+     
+    }
+    }
+    catch (Exception e){
+    System.err.println(e);
+   
+    }
+   Object [][] data = new Object [totalRows] [6];
+   
+   try {
+    rs = stmt.executeQuery(sql);
+    int rowCount = 0;
+        while (rs.next()) {
+        
+        
+         int id= rs.getInt("id");
+        String employeeName =rs.getString("employee_name");
+        String gender =rs.getString("gender");
+        String address =rs.getString("address");
+        float balance =rs.getFloat("balance");
+        String position =rs.getString("employee_position"); 
+        
+        Object[] row = new Object[]{id, employeeName, gender, address, balance, position};
+        data [rowCount] = row;
+        rowCount += 1;
+        }
+   }
+        catch (Exception e){
+                System.err.println(e);
+                }
 
+        return data;
+       
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -39,6 +120,11 @@ public class aLoginSuccessfully extends javax.swing.JFrame {
 
         givePay.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         givePay.setText("GIVE PAY");
+        givePay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                givePayActionPerformed(evt);
+            }
+        });
         jPanel1.add(givePay);
         givePay.setBounds(310, 200, 180, 60);
 
@@ -78,12 +164,19 @@ public class aLoginSuccessfully extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutAdminActionPerformed
-        // TODO add your handling code here:
+   new pickFrame(). setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_logoutAdminActionPerformed
 
     private void searcEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searcEmployeeActionPerformed
-        // TODO add your handling code here:
+       new CheckDelete(). setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_searcEmployeeActionPerformed
+
+    private void givePayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_givePayActionPerformed
+         new givePayment(). setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_givePayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -129,4 +222,9 @@ public class aLoginSuccessfully extends javax.swing.JFrame {
     private javax.swing.JButton logoutAdmin;
     private javax.swing.JButton searcEmployee;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
