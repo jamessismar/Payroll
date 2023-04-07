@@ -98,6 +98,20 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
                 "Title 1", "Title 2"
             }
         ));
+        EmployeeTable.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                EmployeeTableAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        EmployeeTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                EmployeeTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(EmployeeTable);
 
         jPanel1.add(jScrollPane1);
@@ -115,11 +129,21 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
 
         cancel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         cancel.setText("CANCEL");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
         jPanel1.add(cancel);
         cancel.setBounds(450, 510, 90, 23);
 
         gpButton.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         gpButton.setText("GIVEPAY");
+        gpButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gpButtonActionPerformed(evt);
+            }
+        });
         jPanel1.add(gpButton);
         gpButton.setBounds(440, 140, 100, 23);
 
@@ -179,27 +203,70 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
     }// </editor-fold>//GEN-END:initComponents
 
   public ArrayList<EmployeeInfo> getEmployeeList(){
+     
+      
       ArrayList<EmployeeInfo> employeeList = new ArrayList<EmployeeInfo>();
+      Connection Conn = main.getConnection();
       String sql ="Select * from employeedata";
       Statement stmt;
       ResultSet rs;
       
       try{
           stmt = Conn.createStatement();
-          rs = Stmt.executeQuery(sql);
+          rs = stmt.executeQuery(sql);
           EmployeeInfo employeeinfo;
           
           while (rs.next()){
               
-              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getSting("id")),rs.getSting("employeename"),rs.getSting("gender"),rs.getSting("address"),
-              Double.parseDouble(rs.getString("balance"))rs.getSting("employeeposition"));
+              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getString("id")), rs.getString("employeename"), rs.getString("gender"), rs.getString("address"), Double.parseDouble(rs.getString("balance")),rs.getString("employeeposition"));
               employeeList.add(employeeinfo);
           }
           }
-          
-          
-          
-      }  
+      catch(SQLException e){
+      
+      Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,e);
+      }
+      return employeeList;
+  
+  }
+      
+   public void showEmployeeFromTable(){
+   ArrayList<EmployeeInfo> list = getEmployeeList();
+   DefaultTableModel model = (DefaultTableModel) EmployeeTable.getModel();
+   
+   model.setRowCount(0);
+   Object[] row = new Object[6];
+   for (int x = 0 ; x<list.size(); x++){
+   
+   row[0] = list.get(x).getid();
+   row[1] = list.get(x).getemployeeName();
+   row[2] = list.get(x).getgender();
+   row[3] = list.get(x).getaddress();
+   row[4] = list.get(x).getBalance();
+   row[5] = list.get(x).getPosition();
+   model.addRow(row);
+        
+   
+   } 
+   }      
+      
+   public void  ShowItem(int index){
+   
+   id01.setText(Integer.toString(getEmployeeList().get(index).getid()));   
+   name01.setText(getEmployeeList().get(index).getemployeeName());  
+   balance01.setText(Double.toString(getEmployeeList().get(index).getBalance()));
+   position01.setText(getEmployeeList().get(index).getPosition());   
+   
+   }
+
+      
+      
+      
+      
+      
+      
+      
+      
       
       
       
@@ -228,8 +295,72 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
     }//GEN-LAST:event_id01ActionPerformed
 
     private void rpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rpActionPerformed
-        // TODO add your handling code here:
+        new recentPayment().setVisible(true);
     }//GEN-LAST:event_rpActionPerformed
+
+    private void gpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpButtonActionPerformed
+      float gp = Float.parseFloat(text_gp.getText());
+      float balance = Float.parseFloat(this.balance01.getText());
+      float totalBalance = gp+balance;
+      totalpay.setText(String.valueOf(totalBalance));
+      
+      
+      try{
+         String UpdateQuery = null;
+         PreparedStatement pa = null;
+         Connection conn = main.getConnection();
+         
+         UpdateQuery = "INSERT INTO paymentcheck(employee_name,balance,position,givepay,totalbalance,id)" + "values(?,?,?,?,?,?)";
+         
+         pa.executeUpdate();
+         
+         pa.setString(1,name01.getText());
+         pa.setString(2, this.balance01.getText());
+         pa.setString(3,position01.getText());       
+         pa.setString(4,text_gp.getText());     
+         pa.setString(5,totalpay.getText());     
+         pa.setString(6,id01.getText());  
+         
+         
+         pa.executeUpdate();
+         JOptionPane.showMessageDialog(null, "Employee Details Updated");
+         showEmployeeFromTable();    
+            }
+      
+      catch (SQLException e){
+      
+          Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,e);
+          
+          
+          
+          
+          
+          
+      }
+      
+      
+      
+      
+      
+      
+      
+      
+    }//GEN-LAST:event_gpButtonActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+    this.dispose();
+    
+    new aLoginSuccessfully().setVisible(true);
+    }//GEN-LAST:event_cancelActionPerformed
+
+    private void EmployeeTableAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_EmployeeTableAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EmployeeTableAncestorAdded
+
+    private void EmployeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_EmployeeTableMouseClicked
+        int index = EmployeeTable.getSelectedRow();
+        ShowItem(index);
+    }//GEN-LAST:event_EmployeeTableMouseClicked
 
     /**
      * @param args the command line arguments

@@ -1,5 +1,14 @@
+import  java.awt.event.ActionListener;
+import  java.awt.event.ActionEvent;
+import  java.sql.*;
+import  java.sql.ResultSet;
+import  java.sql.SQLException; 
+import  java.sql.Statement;
+import  java.util.logging.Level;     
+import  java.util.logging.Logger; 
+import  javax.swing.JOptionPane; 
 
-public class EmployeeLogin extends javax.swing.JFrame {
+public class EmployeeLogin extends javax.swing.JFrame implements ActionListener{
 
     
     public EmployeeLogin() {
@@ -53,6 +62,11 @@ public class EmployeeLogin extends javax.swing.JFrame {
 
         logEmployee.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         logEmployee.setText("LOG IN");
+        logEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logEmployeeActionPerformed(evt);
+            }
+        });
         jPanel1.add(logEmployee);
         logEmployee.setBounds(420, 290, 90, 30);
 
@@ -98,7 +112,53 @@ public class EmployeeLogin extends javax.swing.JFrame {
         pf.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backEmployeeActionPerformed
-
+    
+    
+    MainClass main = new MainClass();
+    
+    
+    
+    private void logEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logEmployeeActionPerformed
+       String Uname = userEmployee.getText(); 
+       String Pword = employeePinCode.getText();
+       Connection Conn = main.getConnection();
+       try
+       {
+       int log = 1;
+       
+       Statement stmt = Conn.createStatement();
+       String sql = "Select * from employeedata";
+       ResultSet rs = stmt.executeQuery(sql);
+       
+       while (rs.next()){
+       if (rs.getString(3).equals(Uname) && rs.getString(4).equals(Pword)){
+       log = 0;
+       break;
+             }
+       }
+       if (log == 0)
+       {
+       dispose();
+       new eLoginSuccessfully().setVisible(true);
+       }
+       else if(employeePinCode.equals("")|| userEmployee.equals("")){
+       JOptionPane.showMessageDialog(null,"Please fill up the form before proceeding Thank you!!!");
+      
+       }
+       
+       else {
+       JOptionPane.showMessageDialog(null,"Log in Failed","COnnection Failed",JOptionPane.ERROR_MESSAGE);
+       userEmployee.setText("");
+       employeePinCode.setText("");
+       }
+       
+       
+       }catch (SQLException ex){
+        Logger.getLogger(EmployeeLogin.class.getName()).log(Level.SEVERE,null,ex); 
+    }//GEN-LAST:event_logEmployeeActionPerformed
+   
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -130,6 +190,7 @@ public class EmployeeLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new EmployeeLogin().setVisible(true);
+             
             }
         });
     }
@@ -146,4 +207,9 @@ public class EmployeeLogin extends javax.swing.JFrame {
     private javax.swing.JButton logEmployee;
     private javax.swing.JTextField userEmployee;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

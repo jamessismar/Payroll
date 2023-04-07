@@ -1,14 +1,12 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author James
- */
-public class EmployeeSignUp extends javax.swing.JFrame {
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.sql.Connection;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 
+public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener {
+    MainClass main = new MainClass();
     /**
      * Creates new form EmployeeSignUp
      */
@@ -134,6 +132,11 @@ public class EmployeeSignUp extends javax.swing.JFrame {
 
         createEmployeeAccount.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         createEmployeeAccount.setText("CREATE ACCOUNT");
+        createEmployeeAccount.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                createEmployeeAccountActionPerformed(evt);
+            }
+        });
         jPanel1.add(createEmployeeAccount);
         createEmployeeAccount.setBounds(160, 420, 140, 23);
 
@@ -181,6 +184,61 @@ public class EmployeeSignUp extends javax.swing.JFrame {
         pf.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_adminSignUpBackActionPerformed
+
+    private void createEmployeeAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEmployeeAccountActionPerformed
+      try{
+        if ( newUserID.getText().equals("")
+            || newEmployeeName.getText(). equals("")
+            || newEmployeeUser.getText(). equals("")
+            || newEmployeePinCode.getText().equals("")
+            || newEmployeeGender.getText().equals("")
+            || newEmployeeAddress.getText().equals("")
+            || newEmployeeBalance.getText().equals("") 
+            || newEmployeePosition.getText().equals(""))
+            
+            {
+             JOptionPane.showMessageDialog(null,"Please fill up the form before proceeding Thank you!!!");
+            Connection conn = main.getConnection();
+            Statement stmt = conn.createStatement();
+            
+            
+            
+            } else if (newEmployeePinCode.getText().equals(newEmployeePinCode.getText())){
+                    
+            Connection conn = main.getConnection();
+            Statement stmt = conn.createStatement(); 
+                    
+        String id = newUserID.getText();            
+        String name  = newEmployeeName.getText();
+        String uName  = newEmployeeUser.getText();
+        String pin  = newEmployeePinCode.getText(); 
+        String gender   = newEmployeeGender.getText();
+        String address  = newEmployeeAddress.getText();       
+        String bal  = newEmployeeBalance.getText();     
+        String pos =  newEmployeePosition.getText();            
+                    
+        String sql = 
+               ("INSERT INTO admin_Account "
+                +"(id,employeename,username, pincode, gender,address,balance,emloyeeposition) "
+                + "values('"+ id +"','"+ name +"','"+ uName+ "','"+ pin +"','"+ gender +"','"+ address +"','"+ bal +"','"+ pos +"')");            
+                JOptionPane.showMessageDialog(null,"CREATING NEW ACCOUNT PLEASE WAIT...");
+                stmt.executeUpdate(sql);    
+                 JOptionPane.showMessageDialog(null,"ACCOUNT CREATED SUCCESSFULLY.");
+                 dispose();
+                 new EmployeeLogin().setVisible(true);
+                 
+                    
+                    }
+         }
+      catch(Exception ex){
+             JOptionPane.showMessageDialog(null,ex.getMessage());
+
+     }
+        
+        
+        
+        
+    }//GEN-LAST:event_createEmployeeAccountActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,4 +298,9 @@ public class EmployeeSignUp extends javax.swing.JFrame {
     private javax.swing.JTextField newEmployeeUser;
     private javax.swing.JTextField newUserID;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

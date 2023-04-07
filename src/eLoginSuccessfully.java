@@ -1,17 +1,19 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import  java.awt.event.ActionListener;
+import  java.awt.event.ActionEvent;
+import  java.sql.ResultSet;    
+import  java.sql.Connection;     
+import  java.sql.Statement;    
+import  java.sql.SQLException;    
+import  java.util.logging.Level;     
+import  java.util.logging.Logger; 
 
-/**
- *
- * @author James
- */
-public class eLoginSuccessfully extends javax.swing.JFrame {
+public class eLoginSuccessfully extends javax.swing.JFrame implements ActionListener {
 
     /**
      * Creates new form eLoginSuccessfully
      */
+    
+    MainClass main = new MainClass();
     public eLoginSuccessfully() {
         initComponents();
     }
@@ -28,7 +30,7 @@ public class eLoginSuccessfully extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         calculateEmployeePay = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        logout = new javax.swing.JButton();
         checkBal = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -43,21 +45,31 @@ public class eLoginSuccessfully extends javax.swing.JFrame {
 
         calculateEmployeePay.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         calculateEmployeePay.setText("CALCULATE PAY");
+        calculateEmployeePay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateEmployeePayActionPerformed(evt);
+            }
+        });
         jPanel1.add(calculateEmployeePay);
         calculateEmployeePay.setBounds(320, 180, 160, 50);
 
-        jButton2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jButton2.setText("LOG OUT");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        logout.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        logout.setText("LOG OUT");
+        logout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                logoutActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2);
-        jButton2.setBounds(180, 250, 160, 50);
+        jPanel1.add(logout);
+        logout.setBounds(180, 250, 160, 50);
 
         checkBal.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         checkBal.setText("CHECK BALANCE");
+        checkBal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                checkBalActionPerformed(evt);
+            }
+        });
         jPanel1.add(checkBal);
         checkBal.setBounds(40, 180, 160, 50);
 
@@ -82,9 +94,19 @@ public class eLoginSuccessfully extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void logoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutActionPerformed
+        this.dispose();
+        new pickFrame().setVisible(true);
+    }//GEN-LAST:event_logoutActionPerformed
+
+    private void checkBalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkBalActionPerformed
+         this.dispose();
+        new CheckBalance().setVisible(true);
+    }//GEN-LAST:event_checkBalActionPerformed
+
+    private void calculateEmployeePayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateEmployeePayActionPerformed
+        this.dispose();
+        new calculatePay().setVisible(true);    }//GEN-LAST:event_calculateEmployeePayActionPerformed
 
     /**
      * @param args the command line arguments
@@ -124,9 +146,14 @@ public class eLoginSuccessfully extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton calculateEmployeePay;
     private javax.swing.JButton checkBal;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton logout;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

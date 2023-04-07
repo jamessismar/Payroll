@@ -1,21 +1,48 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
+import  java.awt.event.ActionListener;
+import  java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import  java.sql.Connection;
+import  java.sql.PreparedStatement;
+import  java.sql.ResultSet;
+import  java.sql.SQLException;     
+import  java.sql.Statement;
+import java .util.ArrayList;
+import  java.util.logging.Level;     
+import  java.util.logging.Logger;    
+import  javax.swing.JOptionPane; 
+import  javax.swing.event.AncestorEvent;
+import javax.swing.event.AncestorListener;
+import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author James
- */
-public class CheckDelete extends javax.swing.JFrame {
+public class CheckDelete extends javax.swing.JFrame implements ActionListener,MouseListener {
 
     /**
      * Creates new form CheckDelete
      */
     public CheckDelete() {
         initComponents();
+        showEmployeeFromTable();
     }
 
+    
+    
+    
+     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -117,16 +144,31 @@ public class CheckDelete extends javax.swing.JFrame {
 
         cancel.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         cancel.setText("CANCEL");
+        cancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelActionPerformed(evt);
+            }
+        });
         jPanel1.add(cancel);
         cancel.setBounds(500, 620, 80, 23);
 
         updateEmployee.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         updateEmployee.setText("UPDATE");
+        updateEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateEmployeeActionPerformed(evt);
+            }
+        });
         jPanel1.add(updateEmployee);
         updateEmployee.setBounds(310, 620, 74, 23);
 
         deleteEmployee.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         deleteEmployee.setText("DELETE");
+        deleteEmployee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteEmployeeActionPerformed(evt);
+            }
+        });
         jPanel1.add(deleteEmployee);
         deleteEmployee.setBounds(410, 620, 72, 23);
 
@@ -147,6 +189,11 @@ public class CheckDelete extends javax.swing.JFrame {
                 "ID", "NAME"
             }
         ));
+        employeeTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                employeeTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(employeeTable);
 
         jPanel1.add(jScrollPane1);
@@ -169,6 +216,172 @@ public class CheckDelete extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
+      int index = employeeTable.getSelectedRow();
+      ShowItem(index);
+      
+    }//GEN-LAST:event_employeeTableMouseClicked
+
+    private void deleteEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteEmployeeActionPerformed
+    String EmployeeName = name02.getText();
+    try {
+    if (EmployeeName.equals("")){
+    JOptionPane.showMessageDialog(null, "No Employee is Selected");
+    }
+    else{
+    
+     Connection Conn = main.getConnection();
+     Statement stmt = Conn.createStatement();
+     
+     
+     
+      String sql ="DELETE FROM employeedata where employeename = '" +EmployeeName+"'";
+      String msg = "Employee  was removed from the Company[!]"; 
+      stmt.executeUpdate(sql);
+      JOptionPane.showMessageDialog(null, msg);
+      showEmployeeFromTable();
+      
+    }
+    
+    }catch (SQLException e){
+    String retry = "Please Try Again[!]";
+    JOptionPane.showMessageDialog(null, retry);
+    }
+        
+        
+        
+        
+        
+    }//GEN-LAST:event_deleteEmployeeActionPerformed
+
+    private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
+        this.dispose();
+        new aLoginSuccessfully().setVisible(true);
+    }//GEN-LAST:event_cancelActionPerformed
+
+    private void updateEmployeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateEmployeeActionPerformed
+       try{
+         String UpdateQuery = null;
+         PreparedStatement ps = null;
+         Connection conn = main.getConnection();
+         
+         UpdateQuery = "UPDATE employeedata SET employeename(employee_name =?,gender =?,address =?,balance =?,employeeposition =? Where id =?)" ;
+         ps= conn.prepareCall(UpdateQuery);
+         
+         
+         ps.setString(1,name02.getText());
+         ps.setString(2, this.balance02.getText());
+         ps.setString(3,position02.getText());       
+         ps.setString(4,balance02.getText());     
+         ps.setString(5,position02.getText());     
+         ps.setString(6,id02.getText());  
+         
+         
+         ps.executeUpdate();
+         JOptionPane.showMessageDialog(null, "Employee Details Updated");
+         showEmployeeFromTable();    
+            }
+
+    catch(SQLException e){
+      
+      Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,e);
+      }
+    }//GEN-LAST:event_updateEmployeeActionPerformed
+
+    
+    
+    MainClass main = new MainClass();
+    
+    
+    
+    public ArrayList<EmployeeInfo> getEmployeeList(){
+
+
+    ArrayList<EmployeeInfo> employeeList = new ArrayList<EmployeeInfo>();   
+   
+     Connection Conn = main.getConnection();
+      String sql ="Select * from employeedata";
+      Statement stmt;
+      ResultSet rs;
+      
+      
+       try{
+          stmt = Conn.createStatement();
+          rs = stmt.executeQuery(sql);
+          EmployeeInfo employeeinfo;
+          
+          while (rs.next()){
+              
+              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getString("id")),  rs.getString("employeename"), rs.getString("gender"), rs.getString("address"), Double.parseDouble(rs.getString("balance")),rs.getString("employeeposition"));
+              employeeList.add(employeeinfo);                                                                                                                                                                                       
+          }                                                                                                                                                                                                                                                     
+          }
+      catch(SQLException e){
+      
+      Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,e);
+      }
+      return employeeList;
+
+
+
+
+
+
+
+
+}
+    
+    
+   public void showEmployeeFromTable(){
+   ArrayList<EmployeeInfo> list = getEmployeeList();
+   DefaultTableModel model = (DefaultTableModel) employeeTable.getModel();
+   
+   model.setRowCount(0);
+   Object[] row = new Object[6];
+   for (int x = 0 ; x<list.size(); x++){
+   
+   row[0] = list.get(x).getid();
+   row[1] = list.get(x).getemployeeName();
+   row[2] = list.get(x).getgender();
+   row[3] = list.get(x).getaddress();
+   row[4] = list.get(x).getBalance();
+   row[5] = list.get(x).getPosition();
+   model.addRow(row);
+        
+   
+   }
+   
+   }
+   
+  public void ShowItem(int index){
+  
+      id02.setText(Integer.toString(getEmployeeList().get(index).getid()));
+      name02.setText(getEmployeeList().get(index).getemployeeName());
+      gender02.setText(getEmployeeList().get(index).getgender());
+      address02.setText(getEmployeeList().get(index).getaddress());         
+      balance02.setText(Double.toHexString(getEmployeeList().get(index).getBalance()));
+      position02.setText(getEmployeeList().get(index).getPosition());
+      
+      
+  
+  
+  }
+  
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -197,6 +410,31 @@ public class CheckDelete extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
+        try{
+      for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels())
+      {
+      if ("Nimbus".equals(info.getName())){
+      javax.swing.UIManager.setLookAndFeel(info.getClassName());
+      break;
+      }
+      }
+      }  
+      catch (ClassNotFoundException ex){
+       java.util.logging.Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,ex);
+      }
+      catch (InstantiationException ex){
+       java.util.logging.Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,ex);
+      }
+      catch (IllegalAccessException ex){
+       java.util.logging.Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,ex);
+      }
+      catch (javax.swing.UnsupportedLookAndFeelException ex){
+       java.util.logging.Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,ex);
+      }
+        
+        
+        
+        
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new CheckDelete().setVisible(true);
@@ -226,4 +464,34 @@ public class CheckDelete extends javax.swing.JFrame {
     private javax.swing.JTextField position02;
     private javax.swing.JButton updateEmployee;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
