@@ -26,6 +26,7 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -56,6 +57,10 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employeee-removebg-preview.png"))); // NOI18N
+        jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 300, 80));
+
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 330, 80);
 
@@ -187,7 +192,7 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
 
     private void createEmployeeAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createEmployeeAccountActionPerformed
       try{
-        if ( newUserID.getText().equals("")
+        if (  newUserID.getText().equals("")
             || newEmployeeName.getText(). equals("")
             || newEmployeeUser.getText(). equals("")
             || newEmployeePinCode.getText().equals("")
@@ -204,11 +209,17 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
             
             
             } else if (newEmployeePinCode.getText().equals(newEmployeePinCode.getText())){
-                    
+                   
+                
+                
+                
+            
             Connection conn = main.getConnection();
             Statement stmt = conn.createStatement(); 
                     
-        String id = newUserID.getText();            
+        String id = newUserID.getText();   
+        
+        
         String name  = newEmployeeName.getText();
         String uName  = newEmployeeUser.getText();
         String pin  = newEmployeePinCode.getText(); 
@@ -218,9 +229,10 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
         String pos =  newEmployeePosition.getText();            
                     
         String sql = 
-               ("INSERT INTO admin_Account "
-                +"(id,employeename,username, pincode, gender,address,balance,emloyeeposition) "
-                + "values('"+ id +"','"+ name +"','"+ uName+ "','"+ pin +"','"+ gender +"','"+ address +"','"+ bal +"','"+ pos +"')");            
+              "INSERT INTO employeedata (id, employeename, username, pincode, gender, address, balance, employeeposition) "
+                + "VALUES ('"+ id +"','"+ name +"','"+ uName+ "','"+ pin +"','"+ gender +"','"+ address +"','"+ bal + "','"+ pos+"')";
+
+        
                 JOptionPane.showMessageDialog(null,"CREATING NEW ACCOUNT PLEASE WAIT...");
                 stmt.executeUpdate(sql);    
                  JOptionPane.showMessageDialog(null,"ACCOUNT CREATED SUCCESSFULLY.");
@@ -279,6 +291,7 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
     private javax.swing.JButton adminSignUpBack;
     private javax.swing.JButton createEmployeeAccount;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

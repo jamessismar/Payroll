@@ -22,6 +22,7 @@ public class EmployeeLogin extends javax.swing.JFrame implements ActionListener{
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         userEmployee = new javax.swing.JTextField();
         employeePinCode = new javax.swing.JTextField();
         backEmployee = new javax.swing.JButton();
@@ -37,8 +38,12 @@ public class EmployeeLogin extends javax.swing.JFrame implements ActionListener{
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employeee-removebg-preview.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 5, -1, 100));
+
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 600, 70);
+        jPanel2.setBounds(0, 0, 600, 100);
 
         userEmployee.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         userEmployee.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -90,7 +95,7 @@ public class EmployeeLogin extends javax.swing.JFrame implements ActionListener{
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("PAYROLL(EMPLOYEE)");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(190, 80, 200, 30);
+        jLabel4.setBounds(190, 110, 200, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -202,6 +207,7 @@ public class EmployeeLogin extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logEmployee;

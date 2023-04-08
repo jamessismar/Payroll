@@ -27,6 +27,7 @@ public class AdminSignUp extends javax.swing.JFrame implements ActionListener {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -53,8 +54,12 @@ public class AdminSignUp extends javax.swing.JFrame implements ActionListener {
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employeee-removebg-preview.png"))); // NOI18N
+        jPanel2.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 290, 90));
+
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 330, 80);
+        jPanel2.setBounds(0, 0, 340, 90);
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("SIGN UP FOR ADMINISTRATOR ACCOUNT");
@@ -267,6 +272,7 @@ public class AdminSignUp extends javax.swing.JFrame implements ActionListener {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JTextField newAdminPinCode;

@@ -29,10 +29,12 @@ public class eLoginSuccessfully extends javax.swing.JFrame implements ActionList
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         calculateEmployeePay = new javax.swing.JButton();
         logout = new javax.swing.JButton();
         checkBal = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -40,6 +42,10 @@ public class eLoginSuccessfully extends javax.swing.JFrame implements ActionList
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employeee-removebg-preview.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 0, -1, 80));
+
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 520, 80);
 
@@ -78,6 +84,11 @@ public class eLoginSuccessfully extends javax.swing.JFrame implements ActionList
         jLabel1.setText("CHOOSE WHAT TO DO ");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(180, 130, 170, 19);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/BANK1.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(-3, 76, 530, 280);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -147,6 +158,8 @@ public class eLoginSuccessfully extends javax.swing.JFrame implements ActionList
     private javax.swing.JButton calculateEmployeePay;
     private javax.swing.JButton checkBal;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logout;

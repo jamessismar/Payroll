@@ -1,5 +1,18 @@
+import  java.awt.event.ActionListener;
+import  java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import  java.sql.*;   
+import  java.util.*;  
+import  java.util.logging.Level;     
+import  java.util.logging.Logger;  
+import javax.swing.table.DefaultTableModel;
 
-public class CheckBalance extends javax.swing.JFrame {
+
+
+
+
+public class CheckBalance extends javax.swing.JFrame implements ActionListener,MouseListener {
 
     
     public CheckBalance() {
@@ -13,6 +26,7 @@ public class CheckBalance extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         employeeTable = new javax.swing.JTable();
         cancel = new javax.swing.JButton();
@@ -32,8 +46,12 @@ public class CheckBalance extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(102, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employeee-removebg-preview.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 0, -1, 80));
+
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 540, 60);
+        jPanel2.setBounds(0, 0, 540, 80);
 
         employeeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -46,6 +64,11 @@ public class CheckBalance extends javax.swing.JFrame {
                 "ID", "NAME"
             }
         ));
+        employeeTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                employeeTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(employeeTable);
 
         jPanel1.add(jScrollPane1);
@@ -88,9 +111,9 @@ public class CheckBalance extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("EMPLOYEE BALANCE");
+        jLabel2.setText("EMPLOYEE BALANCE :");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(10, 66, 190, 20);
+        jLabel2.setBounds(10, 80, 190, 20);
 
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -114,7 +137,7 @@ public class CheckBalance extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 546, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 539, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -126,8 +149,75 @@ public class CheckBalance extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelActionPerformed
-        // TODO add your handling code here:
+       this.dispose();
+       new eLoginSuccessfully().setVisible(true);
     }//GEN-LAST:event_cancelActionPerformed
+    MainClass main = new MainClass();
+            
+            
+            public ArrayList<EmployeeInfo> getEmployeeList(){
+     
+      
+      ArrayList<EmployeeInfo> employeeList = new ArrayList<EmployeeInfo>();
+      Connection Conn = main.getConnection();
+      String sql ="Select * from employeedata";
+      Statement stmt;
+      ResultSet rs;
+      
+      try{
+          stmt = Conn.createStatement();
+          rs = stmt.executeQuery(sql);
+          EmployeeInfo employeeinfo;
+          
+          while (rs.next()){
+              
+              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getString("id")), rs.getString("employeename"), rs.getString("gender"), rs.getString("address"), Double.parseDouble(rs.getString("balance")),rs.getString("employeeposition"));
+              employeeList.add(employeeinfo);
+          }
+          }
+      catch(SQLException e){
+      
+      Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,e);
+      }
+      return employeeList;
+  
+  }
+            
+   public void showEmployeeFromTable(){
+   ArrayList<EmployeeInfo> list = getEmployeeList();
+   DefaultTableModel model = (DefaultTableModel) employeeTable.getModel();
+   
+   model.setRowCount(0);
+   Object[] row = new Object[6];
+   for (int x = 0 ; x<list.size(); x++){
+   
+   row[0] = list.get(x).getid();
+   row[1] = list.get(x).getemployeeName();
+   row[2] = list.get(x).getgender();
+   row[3] = list.get(x).getaddress();
+   row[4] = list.get(x).getBalance();
+   row[5] = list.get(x).getPosition();
+   model.addRow(row);
+        
+   
+   } 
+   }
+   
+   public void  ShowItem(int index){
+   
+   id03.setText(Integer.toString(getEmployeeList().get(index).getid()));   
+   name03.setText(getEmployeeList().get(index).getemployeeName());  
+   balance03.setText(Double.toString(getEmployeeList().get(index).getBalance()));
+   position03.setText(getEmployeeList().get(index).getPosition());   
+   
+   }         
+            
+            
+            
+            
+    private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_employeeTableMouseClicked
 
     /**
      * @param args the command line arguments
@@ -174,10 +264,41 @@ public class CheckBalance extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField name03;
     private javax.swing.JTextField position03;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

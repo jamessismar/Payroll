@@ -29,6 +29,8 @@ public class AdminLogin extends javax.swing.JFrame implements ActionListener{
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -42,7 +44,7 @@ public class AdminLogin extends javax.swing.JFrame implements ActionListener{
             }
         });
         jPanel1.add(backAdmin);
-        backAdmin.setBounds(400, 210, 90, 30);
+        backAdmin.setBounds(400, 250, 90, 30);
 
         logAdmin.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         logAdmin.setText("LOG IN");
@@ -52,43 +54,42 @@ public class AdminLogin extends javax.swing.JFrame implements ActionListener{
             }
         });
         jPanel1.add(logAdmin);
-        logAdmin.setBounds(400, 260, 90, 30);
+        logAdmin.setBounds(400, 300, 90, 30);
 
         adminuser.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         adminuser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(adminuser);
-        adminuser.setBounds(160, 210, 210, 30);
+        adminuser.setBounds(160, 250, 210, 30);
 
         adminPinCode.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         adminPinCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(adminPinCode);
-        adminPinCode.setBounds(160, 260, 210, 30);
+        adminPinCode.setBounds(160, 300, 210, 30);
 
-        jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jLabel1.setText("USERNAME :");
+        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 24)); // NOI18N
+        jLabel1.setText("ADMIN LOG IN");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(50, 206, 90, 30);
+        jLabel1.setBounds(180, 210, 180, 30);
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel2.setText("PINCODE :");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(50, 260, 80, 30);
+        jLabel2.setBounds(50, 300, 80, 30);
 
         jPanel2.setBackground(new java.awt.Color(51, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 530, Short.MAX_VALUE)
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 120, Short.MAX_VALUE)
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/landscapedesign.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(-20, -30, -1, 306));
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 530, 120);
+        jPanel2.setBounds(0, 0, 530, 200);
+
+        jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel4.setText("USERNAME :");
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(50, 250, 90, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -192,6 +193,8 @@ public class AdminLogin extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton backAdmin;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logAdmin;

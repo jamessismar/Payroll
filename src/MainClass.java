@@ -30,23 +30,53 @@ public class MainClass extends javax.swing.JFrame implements ActionListener {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         cont = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 153));
         jPanel1.setLayout(null);
 
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
         cont.setBackground(new java.awt.Color(102, 204, 255));
         cont.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        cont.setText("CONTINUE");
+        cont.setText("ENTER");
         cont.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 contActionPerformed(evt);
             }
         });
-        jPanel1.add(cont);
-        cont.setBounds(190, 260, 150, 50);
+        jPanel2.add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 140, 40));
+
+        jPanel1.add(jPanel2);
+        jPanel2.setBounds(0, 280, 530, 70);
+
+        jPanel3.setBackground(new java.awt.Color(102, 204, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("SYSTEM");
+        jPanel3.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 260, -1));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/Capture-removebg-preview.png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        jPanel3.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, -10, 330, 310));
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI Black", 1, 12)); // NOI18N
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel6.setText("WELCOME TO BACONG");
+        jPanel3.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 230, -1, 20));
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(0, 0, 530, 280);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,7 +132,12 @@ public class MainClass extends javax.swing.JFrame implements ActionListener {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cont;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     // End of variables declaration//GEN-END:variables
 
     @Override

@@ -90,6 +90,7 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         employeeTable = new javax.swing.JTable();
         ok = new javax.swing.JButton();
@@ -100,8 +101,13 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
 
         jPanel2.setBackground(new java.awt.Color(102, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/checkbook2.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1520, 150));
+
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 670, 50);
+        jPanel2.setBounds(0, 0, 670, 140);
 
         employeeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -220,6 +226,7 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTable employeeTable;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

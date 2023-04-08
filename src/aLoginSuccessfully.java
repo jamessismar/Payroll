@@ -99,8 +99,10 @@ public class aLoginSuccessfully extends javax.swing.JFrame implements ActionList
         searcEmployee = new javax.swing.JButton();
         givePay = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
-        logoutAdmin = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        logoutAdmin = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         jLabel1.setText("jLabel1");
 
@@ -130,6 +132,17 @@ public class aLoginSuccessfully extends javax.swing.JFrame implements ActionList
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setLayout(null);
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel4.setText("Rural Bank of Bacong,INC.");
+        jPanel2.add(jLabel4);
+        jLabel4.setBounds(40, 10, 460, 50);
+
+        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
+        jLabel2.setText("ADMIN LOG:");
+        jPanel2.add(jLabel2);
+        jLabel2.setBounds(210, 60, 110, 20);
+
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, -1, 530, 80);
 
@@ -143,10 +156,10 @@ public class aLoginSuccessfully extends javax.swing.JFrame implements ActionList
         jPanel1.add(logoutAdmin);
         logoutAdmin.setBounds(190, 280, 140, 20);
 
-        jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 18)); // NOI18N
-        jLabel2.setText("ADMIN PANEL");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, 80, 120, 20);
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/BANK1.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(-10, 70, 620, 290);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -217,6 +230,8 @@ public class aLoginSuccessfully extends javax.swing.JFrame implements ActionList
     private javax.swing.JButton givePay;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JButton logoutAdmin;

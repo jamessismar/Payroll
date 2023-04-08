@@ -1,21 +1,103 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 
-/**
- *
- * @author James
- */
-public class calculatePay extends javax.swing.JFrame {
+import  java.awt.event.ActionListener;
+import  java.awt.event.ActionEvent;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import  java.sql.*;
+import  java.sql.PreparedStatement;
+import java .util.ArrayList;
+import  java.util.logging.Level;     
+import  java.util.logging.Logger;    
+import  javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
-    /**
-     * Creates new form calculatePay
-     */
+public class calculatePay extends javax.swing.JFrame implements ActionListener,MouseListener {
+
+ MainClass main = new MainClass();   
+
     public calculatePay() {
         initComponents();
+        
+     showEmployeeFromTable();
+     double pay = 50;
+     double ftax =0.0126;
+     double gpay = 0.0726;
+     double opay = 35 ;
+     double npay =  0.10     ;
+     double sstax  = 0.05    ;
+             
+     gp.setText("7.26%");
+     ft.setText("1.2%");
+     otp.setText("35 php");
+     np.setText  ("10%");      
+     sst.setText  ("5%");      
+     payField.setText("0");        
+        
     }
 
+    
+    
+    
+    
+    
+     public ArrayList<EmployeeInfo> getEmployeeList(){
+     
+      
+      ArrayList<EmployeeInfo> employeeList = new ArrayList<EmployeeInfo>();
+      Connection Conn = main.getConnection();
+      String sql ="Select * from employeedata";
+      Statement stmt;
+      ResultSet rs;
+      
+      try{
+          stmt = Conn.createStatement();
+          rs = stmt.executeQuery(sql);
+          EmployeeInfo employeeinfo;
+          
+          while (rs.next()){
+              
+              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getString("id")), rs.getString("employeename"), rs.getString("gender"), rs.getString("address"), Double.parseDouble(rs.getString("balance")),rs.getString("employeeposition"));
+              employeeList.add(employeeinfo);
+          }
+          }
+      catch(SQLException e){
+      
+      Logger.getLogger(CheckDelete.class.getName()).log(Level.SEVERE,null,e);
+      }
+      return employeeList;
+  
+  }
+     
+     public void showEmployeeFromTable(){
+   ArrayList<EmployeeInfo> list = getEmployeeList();
+   DefaultTableModel model = (DefaultTableModel) employeeTable.getModel();
+   
+   model.setRowCount(0);
+   Object[] row = new Object[2];
+   for (int x = 0 ; x<list.size(); x++){
+   
+   row[0] = list.get(x).getid();
+   row[1] = list.get(x).getemployeeName();
+    
+   model.addRow(row) ;
+   }
+     }
+     
+    
+    
+    public void  ShowItem(int index){
+   
+   yourName.setText(Integer.toString(getEmployeeList().get(index).getid())); 
+   yourBalance.setText(Double.toString(getEmployeeList().get(index).getBalance())); 
+    
+    
+    
+    
+    
+    
+    
+    
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -31,7 +113,7 @@ public class calculatePay extends javax.swing.JFrame {
         employeeTable = new javax.swing.JTable();
         daysWorked = new javax.swing.JTextField();
         payField = new javax.swing.JTextField();
-        yourBlance = new javax.swing.JTextField();
+        yourBalance = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -44,10 +126,12 @@ public class calculatePay extends javax.swing.JFrame {
         gp = new javax.swing.JTextField();
         np = new javax.swing.JTextField();
         ft = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         calculate = new javax.swing.JButton();
         sst = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        otp = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,6 +164,11 @@ public class calculatePay extends javax.swing.JFrame {
                 "ID", "NAME"
             }
         ));
+        employeeTable.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                employeeTableMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(employeeTable);
 
         jPanel1.add(jScrollPane1);
@@ -105,15 +194,15 @@ public class calculatePay extends javax.swing.JFrame {
         jPanel1.add(payField);
         payField.setBounds(280, 590, 120, 30);
 
-        yourBlance.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        yourBlance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        yourBlance.addActionListener(new java.awt.event.ActionListener() {
+        yourBalance.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        yourBalance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        yourBalance.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                yourBlanceActionPerformed(evt);
+                yourBalanceActionPerformed(evt);
             }
         });
-        jPanel1.add(yourBlance);
-        yourBlance.setBounds(170, 360, 250, 30);
+        jPanel1.add(yourBalance);
+        yourBalance.setBounds(170, 360, 250, 30);
 
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -203,18 +292,23 @@ public class calculatePay extends javax.swing.JFrame {
         jPanel1.add(ft);
         ft.setBounds(120, 560, 110, 30);
 
-        jButton1.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
-        jButton1.setText("BACK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        back.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        back.setText("BACK");
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(290, 630, 100, 23);
+        jPanel1.add(back);
+        back.setBounds(290, 630, 100, 23);
 
         calculate.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         calculate.setText("CALCULATE");
+        calculate.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateActionPerformed(evt);
+            }
+        });
         jPanel1.add(calculate);
         calculate.setBounds(280, 540, 100, 23);
 
@@ -233,6 +327,22 @@ public class calculatePay extends javax.swing.JFrame {
         jLabel9.setText("YOUR NAME:");
         jPanel1.add(jLabel9);
         jLabel9.setBounds(20, 320, 150, 30);
+
+        jLabel10.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Over Time Pay");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(10, 620, 100, 30);
+
+        otp.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
+        otp.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        otp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                otpActionPerformed(evt);
+            }
+        });
+        jPanel1.add(otp);
+        otp.setBounds(120, 620, 110, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -257,9 +367,9 @@ public class calculatePay extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_payFieldActionPerformed
 
-    private void yourBlanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yourBlanceActionPerformed
+    private void yourBalanceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yourBalanceActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_yourBlanceActionPerformed
+    }//GEN-LAST:event_yourBalanceActionPerformed
 
     private void yourNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yourNameActionPerformed
         // TODO add your handling code here:
@@ -277,13 +387,69 @@ public class calculatePay extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ftActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+      this.dispose();
+      new eLoginSuccessfully().setVisible(true);
+    }//GEN-LAST:event_backActionPerformed
 
     private void sstActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sstActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_sstActionPerformed
+
+    private void otpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_otpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_otpActionPerformed
+
+    private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
+      int index = employeeTable.getSelectedRow();
+      ShowItem(index);
+    }//GEN-LAST:event_employeeTableMouseClicked
+
+    private void calculateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_calculateActionPerformed
+       String command = evt.getActionCommand();
+       double p = 40;
+       double ft = .12;      
+       double gp = .0726;
+       double dw = 0;
+       double otp= 35;
+       double np= .10;
+       double sst= .5;
+       String textFieldValue = daysWorked.getText();
+       int val = Integer.parseInt(daysWorked.getText());
+       
+       
+       if (val <=8 || val>0){} 
+       
+       
+       double pay = val * p;
+       double tDeduct = ft + sst;
+       double overtime = gp + np;
+       
+       double ded = tDeduct * val;
+       double add = overtime *val ;
+       
+       
+       double addedPay = pay + add;
+       double finalPay = addedPay - ded;
+       double fPayXot = (val*p)+ otp - ded;
+       
+       for (double x =9 ; x<100; x++){
+      double k = otp *x; 
+       
+       }
+       if (val<=8){
+       payField.setText("" + finalPay);
+           System.out.println("no OT");
+       }else if(val >=9){
+       payField.setText(""+fPayXot);
+           System.out.println("OVERTIME");
+ 
+       }
+               
+       
+       
+       
+    }//GEN-LAST:event_calculateActionPerformed
 
     /**
      * @param args the command line arguments
@@ -321,13 +487,14 @@ public class calculatePay extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton back;
     private javax.swing.JButton calculate;
     private javax.swing.JTextField daysWorked;
     private javax.swing.JTable employeeTable;
     private javax.swing.JTextField ft;
     private javax.swing.JTextField gp;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -340,9 +507,40 @@ public class calculatePay extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField np;
+    private javax.swing.JTextField otp;
     private javax.swing.JTextField payField;
     private javax.swing.JTextField sst;
-    private javax.swing.JTextField yourBlance;
+    private javax.swing.JTextField yourBalance;
     private javax.swing.JTextField yourName;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

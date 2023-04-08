@@ -31,6 +31,7 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
 
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
         id01 = new javax.swing.JTextField();
         name01 = new javax.swing.JTextField();
         balance01 = new javax.swing.JTextField();
@@ -56,6 +57,10 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
         jPanel2.setBackground(new java.awt.Color(102, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/employeee-removebg-preview.png"))); // NOI18N
+        jPanel2.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 0, -1, -1));
+
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 570, 90);
 
@@ -409,6 +414,7 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;

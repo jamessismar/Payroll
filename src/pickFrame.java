@@ -20,6 +20,10 @@ public class pickFrame extends javax.swing.JFrame implements ActionListener{
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -80,8 +84,25 @@ public class pickFrame extends javax.swing.JFrame implements ActionListener{
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setForeground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/parasPFrame-removebg-preview (1).png"))); // NOI18N
+        jPanel2.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, 140));
+
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 530, 100);
+        jPanel2.setBounds(0, 0, 530, 170);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/123123123123.jpg"))); // NOI18N
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(220, 170, 225, 190);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/123123123123.jpg"))); // NOI18N
+        jLabel6.setText("jLabel6");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(440, 110, 280, 330);
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icon/123123123123.jpg"))); // NOI18N
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(0, 170, 220, 220);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -160,6 +181,10 @@ public class pickFrame extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     // End of variables declaration//GEN-END:variables
