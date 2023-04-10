@@ -1,18 +1,12 @@
 import  java.awt.event.ActionListener;
 import  java.awt.event.ActionEvent;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import  java.sql.Connection;
-import  java.sql.PreparedStatement;
 import  java.sql.ResultSet;
 import  java.sql.SQLException;     
 import  java.sql.Statement;
 import java .util.ArrayList;
 import  java.util.logging.Level;     
-import  java.util.logging.Logger;    
-import  javax.swing.JOptionPane; 
-import  javax.swing.event.AncestorEvent;
-import javax.swing.event.AncestorListener;
+import  java.util.logging.Logger;  
 import javax.swing.table.DefaultTableModel;
 
 public class recentPayment extends javax.swing.JFrame implements ActionListener{
@@ -26,9 +20,8 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
     }
     
     MainClass main =new MainClass();
-    public ArrayList<Payments> getpaymentsList(){
-     
-      
+    
+    public ArrayList<Payments> getpaymentsList(){ 
       ArrayList<Payments> paymentsList = new ArrayList<Payments>();   
    
      Connection Conn = main.getConnection();
@@ -44,7 +37,9 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
           
           while (rs.next()){
               
-              payments = new Payments(Integer.parseInt(rs.getString("id")), rs.getString("employee_name"),Float.parseFloat (rs.getString("balance")), rs.getString("position"), Float.parseFloat(rs.getString("givepay")),Float.parseFloat(rs.getString("totalbalance")));
+              payments = new Payments(Integer.parseInt(rs.getString("id")), rs.getString("employee_name"),Float.parseFloat
+         (rs.getString("balance")), rs.getString("position"), Float.parseFloat(rs.getString("givepay"))
+                      ,Float.parseFloat(rs.getString("totalbalance")));
               paymentsList.add(payments);
           }
           }
@@ -72,7 +67,7 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
    row[1] = list.get(x).getemployee_name();
    row[2] = list.get(x).getbalance();
    row[3] = list.get(x).getposition();
-   row[4] = list.get(x).getgivpay();
+   row[4] = list.get(x).getgivepay();
    row[5] = list.get(x).gettotalbalance();
    model.addRow(row);
         
@@ -185,7 +180,7 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
       {
       if ("Nimbus".equals(info.getName())){
       javax.swing.UIManager.setLookAndFeel(info.getClassName());
-      break;
+        break;
       }
       }
       }  

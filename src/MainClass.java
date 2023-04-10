@@ -5,14 +5,20 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.BorderFactory;
+import javax.swing.border.Border;
+import javax.swing.JFrame;
         
 public class MainClass extends javax.swing.JFrame implements ActionListener {
 
    
     public MainClass() {
         initComponents();
+     
+       
     }
-    
+ 
     public Connection getConnection(){
         try{
             Connection myConn = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll", "root","" );
@@ -53,7 +59,7 @@ public class MainClass extends javax.swing.JFrame implements ActionListener {
                 contActionPerformed(evt);
             }
         });
-        jPanel2.add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 140, 40));
+        jPanel2.add(cont, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 10, 160, 40));
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 280, 530, 70);

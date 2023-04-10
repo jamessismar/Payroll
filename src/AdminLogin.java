@@ -63,6 +63,11 @@ public class AdminLogin extends javax.swing.JFrame implements ActionListener{
 
         adminPinCode.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         adminPinCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        adminPinCode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminPinCodeActionPerformed(evt);
+            }
+        });
         jPanel1.add(adminPinCode);
         adminPinCode.setBounds(160, 300, 210, 30);
 
@@ -154,6 +159,10 @@ public class AdminLogin extends javax.swing.JFrame implements ActionListener{
         
        
     }//GEN-LAST:event_logAdminActionPerformed
+
+    private void adminPinCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminPinCodeActionPerformed
+
+    }//GEN-LAST:event_adminPinCodeActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

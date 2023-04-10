@@ -223,7 +223,9 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
           
           while (rs.next()){
               
-              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getString("id")), rs.getString("employeename"), rs.getString("gender"), rs.getString("address"), Double.parseDouble(rs.getString("balance")),rs.getString("employeeposition"));
+              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getString("id")),
+                      rs.getString("employeename"), rs.getString("gender"),
+                      rs.getString("address"), Double.parseDouble(rs.getString("balance")),rs.getString("employeeposition"));
               employeeList.add(employeeinfo);
           }
           }
@@ -306,7 +308,7 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
     private void gpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gpButtonActionPerformed
       float gp = Float.parseFloat(text_gp.getText());
       float balance = Float.parseFloat(this.balance01.getText());
-      float totalBalance = gp+balance;
+      float totalBalance = gp +balance;
       totalpay.setText(String.valueOf(totalBalance));
       
       
@@ -317,7 +319,7 @@ public class givePayment extends javax.swing.JFrame implements ActionListener,Mo
          
          UpdateQuery = "INSERT INTO paymentcheck(employee_name,balance,position,givepay,totalbalance,id)" + "values(?,?,?,?,?,?)";
          
-         pa.executeUpdate();
+         pa = conn.prepareCall(UpdateQuery);
          
          pa.setString(1,name01.getText());
          pa.setString(2, this.balance01.getText());

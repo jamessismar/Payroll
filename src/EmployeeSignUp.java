@@ -53,7 +53,7 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
         jLabel1.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel1.setText("BALANCE:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(30, 350, 70, 19);
+        jLabel1.setBounds(30, 380, 70, 30);
 
         jPanel2.setBackground(new java.awt.Color(153, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -62,7 +62,7 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
         jPanel2.add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, 300, 80));
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 330, 80);
+        jPanel2.setBounds(0, 0, 340, 80);
 
         jLabel2.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel2.setText("SIGN UP FOR EMPLOYEE ACCOUNT");
@@ -72,68 +72,68 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
         jLabel3.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel3.setText("ID :");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(50, 170, 30, 19);
+        jLabel3.setBounds(50, 140, 30, 30);
 
         jLabel4.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("USERNAME :");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(20, 230, 90, 19);
+        jLabel4.setBounds(20, 219, 90, 30);
 
         jLabel5.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel5.setText("     POSITION :");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(10, 380, 110, 19);
+        jLabel5.setBounds(10, 420, 110, 30);
 
         jLabel6.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel6.setText("GENDER :");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(30, 290, 90, 19);
+        jLabel6.setBounds(30, 299, 90, 30);
 
         jLabel7.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel7.setText("ADDRESS :");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(30, 320, 70, 19);
+        jLabel7.setBounds(30, 340, 70, 30);
 
         newEmployeePosition.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newEmployeePosition.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newEmployeePosition);
-        newEmployeePosition.setBounds(130, 380, 170, 22);
+        newEmployeePosition.setBounds(130, 420, 170, 30);
 
         newEmployeeName.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newEmployeeName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newEmployeeName);
-        newEmployeeName.setBounds(130, 200, 170, 22);
+        newEmployeeName.setBounds(130, 180, 170, 30);
 
         newEmployeeUser.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newEmployeeUser.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newEmployeeUser);
-        newEmployeeUser.setBounds(130, 230, 170, 22);
+        newEmployeeUser.setBounds(130, 220, 170, 30);
 
         newEmployeeGender.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newEmployeeGender.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newEmployeeGender);
-        newEmployeeGender.setBounds(130, 290, 170, 22);
+        newEmployeeGender.setBounds(130, 300, 170, 30);
 
         newEmployeeAddress.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newEmployeeAddress.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newEmployeeAddress);
-        newEmployeeAddress.setBounds(130, 320, 170, 22);
+        newEmployeeAddress.setBounds(130, 340, 170, 30);
 
         newEmployeeBalance.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newEmployeeBalance.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newEmployeeBalance);
-        newEmployeeBalance.setBounds(130, 350, 170, 22);
+        newEmployeeBalance.setBounds(130, 380, 170, 30);
 
         newUserID.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newUserID.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newUserID);
-        newUserID.setBounds(130, 170, 170, 22);
+        newUserID.setBounds(130, 140, 170, 30);
 
         newEmployeePinCode.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         newEmployeePinCode.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jPanel1.add(newEmployeePinCode);
-        newEmployeePinCode.setBounds(130, 260, 170, 22);
+        newEmployeePinCode.setBounds(130, 260, 170, 30);
 
         createEmployeeAccount.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         createEmployeeAccount.setText("CREATE ACCOUNT");
@@ -143,7 +143,7 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
             }
         });
         jPanel1.add(createEmployeeAccount);
-        createEmployeeAccount.setBounds(160, 420, 140, 23);
+        createEmployeeAccount.setBounds(160, 470, 140, 23);
 
         adminSignUpBack.setFont(new java.awt.Font("Century Gothic", 1, 12)); // NOI18N
         adminSignUpBack.setText("BACK");
@@ -153,31 +153,31 @@ public class EmployeeSignUp extends javax.swing.JFrame implements ActionListener
             }
         });
         jPanel1.add(adminSignUpBack);
-        adminSignUpBack.setBounds(40, 420, 72, 23);
+        adminSignUpBack.setBounds(40, 470, 72, 23);
 
         jLabel8.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel8.setText("EMPLOYEE NAME :");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(10, 200, 130, 20);
+        jLabel8.setBounds(0, 180, 130, 30);
 
         jLabel9.setFont(new java.awt.Font("Century Gothic", 1, 14)); // NOI18N
         jLabel9.setText("PINCODE :");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(30, 260, 70, 19);
+        jLabel9.setBounds(30, 259, 70, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 335, Short.MAX_VALUE)
+            .addGap(0, 339, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 464, Short.MAX_VALUE)
+            .addGap(0, 505, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 505, Short.MAX_VALUE))
         );
 
         pack();

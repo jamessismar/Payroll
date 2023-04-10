@@ -17,7 +17,7 @@ public class aLoginSuccessfully extends javax.swing.JFrame implements ActionList
     MainClass main = new MainClass();
    
     private Object [][] query(String name) throws SQLException{
-    String sql = "Select * FROM emplyeedata Where account_name LIKE '%"+ name + "&'";
+    String sql = "Select * FROM emplyeedata Where account_name LIKE '%"+ name + "%'";
     Connection Conn = main.getConnection();
     Statement stmt = Conn.createStatement();
     
@@ -28,7 +28,7 @@ public class aLoginSuccessfully extends javax.swing.JFrame implements ActionList
     try {
         
     rs = stmt.executeQuery(sql);
-    int rowCount = 0; {
+    while(rs.next()) {
      totalRows +=1;
      
     }

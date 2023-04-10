@@ -270,13 +270,13 @@ public class CheckDelete extends javax.swing.JFrame implements ActionListener,Mo
          PreparedStatement ps = null;
          Connection conn = main.getConnection();
          
-         UpdateQuery = "UPDATE employeedata SET employeename(employee_name =?,gender =?,address =?,balance =?,employeeposition =? Where id =?)" ;
+         UpdateQuery = "UPDATE employeedata SET employeename = ?, gender = ?, address =?, balance = ?, employeeposition =? Where id = ?" ;
          ps= conn.prepareCall(UpdateQuery);
          
          
          ps.setString(1,name02.getText());
-         ps.setString(2, this.balance02.getText());
-         ps.setString(3,position02.getText());       
+         ps.setString(2, gender02.getText());
+         ps.setString(3,address02.getText());       
          ps.setString(4,balance02.getText());     
          ps.setString(5,position02.getText());     
          ps.setString(6,id02.getText());  
@@ -317,7 +317,10 @@ public class CheckDelete extends javax.swing.JFrame implements ActionListener,Mo
           
           while (rs.next()){
               
-              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getString("id")),  rs.getString("employeename"), rs.getString("gender"), rs.getString("address"), Double.parseDouble(rs.getString("balance")),rs.getString("employeeposition"));
+              employeeinfo = new EmployeeInfo(Integer.parseInt(rs.getString("id")),
+                      rs.getString("employeename"), rs.getString("gender"),
+                      rs.getString("address"), Double.parseDouble(rs.getString("balance")),
+                      rs.getString("employeeposition"));
               employeeList.add(employeeinfo);                                                                                                                                                                                       
           }                                                                                                                                                                                                                                                     
           }
@@ -364,7 +367,7 @@ public class CheckDelete extends javax.swing.JFrame implements ActionListener,Mo
       name02.setText(getEmployeeList().get(index).getemployeeName());
       gender02.setText(getEmployeeList().get(index).getgender());
       address02.setText(getEmployeeList().get(index).getaddress());         
-      balance02.setText(Double.toHexString(getEmployeeList().get(index).getBalance()));
+      balance02.setText(Double.toString(getEmployeeList().get(index).getBalance()));
       position02.setText(getEmployeeList().get(index).getPosition());
       
       
