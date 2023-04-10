@@ -56,6 +56,10 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
   
   }
     
+    
+    
+    
+    
      public void showEmployeeFromTable(){
    ArrayList<Payments> list = getpaymentsList();
    DefaultTableModel model = (DefaultTableModel) employeeTable.getModel();
@@ -84,6 +88,25 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
     
     
      }
+     
+     public void ShowItem(int index){
+     
+     
+     
+     
+     
+     }
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
+     
     
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -150,7 +173,7 @@ public class recentPayment extends javax.swing.JFrame implements ActionListener{
     }// </editor-fold>//GEN-END:initComponents
 
     private void okActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okActionPerformed
-        // TODO add your handling code here:
+        this.dispose();
     }//GEN-LAST:event_okActionPerformed
 
    

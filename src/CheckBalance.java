@@ -17,6 +17,7 @@ public class CheckBalance extends javax.swing.JFrame implements ActionListener,M
     
     public CheckBalance() {
         initComponents();
+        showEmployeeFromTable();
     }
 
     
@@ -72,7 +73,7 @@ public class CheckBalance extends javax.swing.JFrame implements ActionListener,M
         jScrollPane1.setViewportView(employeeTable);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 320, 550, 140);
+        jScrollPane1.setBounds(0, 320, 540, 140);
 
         cancel.setText("CANCEL");
         cancel.addActionListener(new java.awt.event.ActionListener() {
@@ -216,7 +217,8 @@ public class CheckBalance extends javax.swing.JFrame implements ActionListener,M
             
             
     private void employeeTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_employeeTableMouseClicked
-        // TODO add your handling code here:
+        int index = employeeTable.getSelectedRow();
+        ShowItem(index);
     }//GEN-LAST:event_employeeTableMouseClicked
 
     /**
